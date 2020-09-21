@@ -57,6 +57,8 @@ def missionPortData(missionPort):
 
 
 def msw_mqtt_connect(broker_ip, port):
+    global lib
+
     lib_mqtt_client = mqtt.Client()
     lib_mqtt_client.on_connect = on_connect
     lib_mqtt_client.on_disconnect = on_disconnect
@@ -120,6 +122,8 @@ def request_to_mission(cinObj):
                 missionPort.write(msdata)
 
 def main():
+    global lib
+
     my_lib_name = 'lib_sparrow_gun'
 
     try:
