@@ -6,6 +6,7 @@ from time import sleep
 import json
 
 ################################
+argv = sys.argv
 
 global lib
 global lib_topic
