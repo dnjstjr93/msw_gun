@@ -109,6 +109,7 @@ function runLib(obj_lib) {
         }
         else {
             scripts_arr[0] = scripts_arr[0].replace('./', '');
+            console.log(scripts_arr[0]);
             scripts_arr[0] = './' + config.directory_name + '/' + scripts_arr[0];
         }
         console.log('command: ', scripts_arr[0], ', ', scripts_arr.slice(1));
