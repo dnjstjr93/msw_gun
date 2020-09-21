@@ -168,10 +168,10 @@ function msw_mqtt_connect(broker_ip, port) {
             }
         }
 
-        for(idx in fc_topic) {
-            if(fc_topic.hasOwnProperty(idx)) {
-                msw_mqtt_client.subscribe(fc_topic[idx]);
-                console.log('[msw_mqtt_connect] fc_topic[' + idx + ']: ' + fc_topic[idx]);
+        for(idx in msw_sub_fc_topic) {
+            if(msw_sub_fc_topic.hasOwnProperty(idx)) {
+                msw_mqtt_client.subscribe(msw_sub_fc_topic[idx]);
+                console.log('[msw_mqtt_connect] msw_sub_fc_topic[' + idx + ']: ' + msw_sub_fc_topic[idx]);
             }
         }
     });
