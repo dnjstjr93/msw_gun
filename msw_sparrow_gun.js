@@ -50,9 +50,9 @@ catch (e) {
         name: 'lib_sparrow_gun',
         target: 'armv6',
         description: "[name] [portnum] [baudrate]",
-        scripts: './lib_sparrow_gun /dev/ttyUSB3 115200',
+        scripts: './lib_sparrow_gun /dev/ttyUSB3 9600',
         data: ['GUN'],
-        control: ['Micro']
+        control: ['MICRO']
     };
     config.lib.push(add_lib);
 }

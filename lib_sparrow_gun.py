@@ -137,7 +137,7 @@ def main():
         lib["name"] = my_lib_name
         lib["target"] = 'armv6'
         lib["description"] = "[name] [portnum] [baudrate]"
-        lib["scripts"] = './' + my_lib_name + ' /dev/ttyUSB1 115200'
+        lib["scripts"] = './' + my_lib_name + ' /dev/ttyUSB3 9600'
         lib["data"] = ['GUN']
         lib["control"] = ['MICRO']
         lib = json.dumps(lib, indent=4)
