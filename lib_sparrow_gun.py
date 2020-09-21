@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import serial
 import paho.mqtt.client as mqtt
 import sys
