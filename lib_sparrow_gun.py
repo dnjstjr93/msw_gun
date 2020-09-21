@@ -46,13 +46,6 @@ def missionPortError(err):
     print('[missionPort error]: ', err)
 
 
-def lteReqGetRssi(missionPort):
-    if missionPort is not None:
-        if missionPort.isOpen():
-            atcmd = b'AT@DBG\r'
-            missionPort.write(atcmd)
-
-
 def send_data_to_msw (data_topic, obj_data):
     lib_mqtt_client.publish(data_topic, obj_data)
 
@@ -126,16 +119,35 @@ def request_to_mission(cinObj):
                 missionPort.write(msdata)
 
 def main():
-    global lib
-    argv = sys.argv[1:]  # argv 가져오기
-    if argv != None:
-        lib = {'name': argv[0], 'serialPortNum': argv[1], 'serialBaudrate': argv[2]}  # argv값 셋팅
-        print(lib)
-        # sys argv input
-        lib_mqtt_client = msw_mqtt_connect(broker_ip, port)
-        missionPort = missionPortOpen(lib['serialPortNum'], lib['serialBaudrate'])
-    else :
-        print("Input the argv!")
+    my_lib_name = 'lib_sparrow_gun'
+
+    try:
+        lib = dict()
+        with open(my_lib_name + '.json', 'r') as f:
+            lib = json.load(f)
+            lib = json.loads(lib)
+
+    except:
+        lib = dict()
+        lib["name"] = my_lib_name
+        lib["target"] = 'armv6'
+        lib["description"] = "[name] [portnum] [baudrate]"
+        lib["scripts"] = './' + my_lib_name + ' /dev/ttyUSB1 115200'
+        lib["data"] = ['GUN']
+        lib["control"] = ['MICRO']
+        lib = json.dumps(lib, indent=4)
+        lib = json.loads(lib)
+
+        with open('./' + my_lib_name + '.json', 'w', encoding='utf-8') as json_file:
+            json.dump(lib, json_file, indent=4)
+
+
+    lib['serialPortNum'] = argv[1]
+    lib['serialBaudrate'] = argv[2]
     
+    
+    lib_mqtt_client = msw_mqtt_connect(broker_ip, port)
+    missionPort = missionPortOpen(lib['serialPortNum'], lib['serialBaudrate'])
+ 
 if __name__ == "__main__":
     main()
