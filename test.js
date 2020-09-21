@@ -75,23 +75,23 @@ function init() {
     if(config.lib.length > 0) {
         for(var idx in config.lib) {
             if(config.lib.hasOwnProperty(idx)) {
-                if (msw_mqtt_client != null) {
-                    for (var i = 0; i < config.lib[idx].control.length; i++) {
-                        var sub_container_name = config.lib[idx].control[i];
-                        _topic = '/Mobius/' + config.gcs + '/Mission_Data/' + config.drone + '/' + sub_container_name;
-                        msw_mqtt_client.subscribe(_topic);
-                        msw_sub_muv_topic.push(_topic);
-                        console.log('[msw_mqtt] msw_sub_muv_topic[' + i + ']: ' + _topic);
-                    }
+                // if (msw_mqtt_client != null) {
+                //     for (var i = 0; i < config.lib[idx].control.length; i++) {
+                //         var sub_container_name = config.lib[idx].control[i];
+                //         _topic = '/Mobius/' + config.gcs + '/Mission_Data/' + config.drone + '/' + sub_container_name;
+                //         msw_mqtt_client.subscribe(_topic);
+                //         msw_sub_muv_topic.push(_topic);
+                //         console.log('[msw_mqtt] msw_sub_muv_topic[' + i + ']: ' + _topic);
+                //     }
 
-                    for (var i = 0; i < config.lib[idx].data.length; i++) {
-                        var container_name = config.lib[idx].data[i];
-                        var _topic = '/MUV/data/' + config.lib[idx].name + '/' + container_name;
-                        msw_mqtt_client.subscribe(_topic);
-                        msw_sub_lib_topic.push(_topic);
-                        console.log('[lib_mqtt] lib_topic[' + i + ']: ' + _topic);
-                    }
-                }
+                //     for (var i = 0; i < config.lib[idx].data.length; i++) {
+                //         var container_name = config.lib[idx].data[i];
+                //         var _topic = '/MUV/data/' + config.lib[idx].name + '/' + container_name;
+                //         msw_mqtt_client.subscribe(_topic);
+                //         msw_sub_lib_topic.push(_topic);
+                //         console.log('[lib_mqtt] lib_topic[' + i + ']: ' + _topic);
+                //     }
+                // }
 
                 var obj_lib = config.lib[idx];
                 setTimeout(runLib, 1000 + parseInt(Math.random()*10), JSON.parse(JSON.stringify(obj_lib)));
